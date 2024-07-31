@@ -12,16 +12,31 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Set a timeout to remove the notice after 15 seconds
+      const notice = document.getElementById('notice');
+      if (notice) {
+        setTimeout(() => {
+          notice.style.display = 'none';
+        }, 15000); // 15 seconds
+      }
+    });
+  </script>
 </head>
 
 <body>
   <%= render 'layouts/navbar' %>
 
   <div class="container mt-4">
-    <p class="alert alert-info"><%= notice %></p>
-    <p class="alert alert-danger"><%= alert %></p>
+    <% if notice %>
+      <div id="notice" class="alert alert-info"><%= notice %></div>
+    <% end %>
+    <% if alert %>
+      <div id="alert" class="alert alert-danger"><%= alert %></div>
+    <% end %>
 
     <%= yield %>
   </div>
